@@ -1,0 +1,53 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="color-scheme" content="light dark">
+  <link rel="preload" href="./fonts/Monaspace.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <main class="page">
+    <pre>static.bottleneck.cc/code</pre>
+    <div class="code">
+      <div class="code-name">code.rs</div>
+      <pre><span class="k">use</span> std::时间::<span class="t">时刻</span>;
+
+<span class="k">struct</span> <span class="t">瓶颈</span> {
+    <span class="v">容量</span>: <span class="t">f64</span>,
+    <span class="v">令牌</span>: <span class="t">f64</span>,
+    <span class="v">速率</span>: <span class="t">f64</span>,
+    <span class="v">上次</span>: <span class="t">时刻</span>,
+}
+
+<span class="k">impl</span> <span class="t">瓶颈</span> {
+    <span class="k">fn</span> <span class="f">新建</span>(<span class="v">容量</span>: <span class="t">f64</span>, <span class="v">速率</span>: <span class="t">f64</span>) -> <span class="t">Self</span> {
+        <span class="t">Self</span> { <span class="v">容量</span>, <span class="v">令牌</span>: <span class="v">容量</span>, <span class="v">速率</span>, <span class="v">上次</span>: <span class="t">时刻</span>::<span class="f">此刻</span>() }
+    }
+
+    <span class="k">fn</span> <span class="f">尝试获取</span>(&amp;<span class="k">mut</span> <span class="k">self</span>) -> <span class="t">bool</span> {
+        <span class="k">let</span> <span class="v">此刻</span> = <span class="t">时刻</span>::<span class="f">此刻</span>();
+        <span class="k">self</span>.<span class="v">令牌</span> = (<span class="k">self</span>.<span class="v">令牌</span> + <span class="v">此刻</span>.<span class="f">间隔</span>(<span class="k">self</span>.<span class="v">上次</span>).<span class="f">秒数</span>() * <span class="k">self</span>.<span class="v">速率</span>)
+            .<span class="f">最小</span>(<span class="k">self</span>.<span class="v">容量</span>);
+        <span class="k">self</span>.<span class="v">上次</span> = <span class="v">此刻</span>;
+
+        <span class="k">if</span> <span class="k">self</span>.<span class="v">令牌</span> &lt; <span class="n">1.0</span> {
+            <span class="k">return</span> <span class="k">false</span>;
+        }
+        <span class="k">self</span>.<span class="v">令牌</span> -= <span class="n">1.0</span>;
+        <span class="k">true</span>
+    }
+}
+
+<span class="k">fn</span> <span class="f">main</span>() {
+    <span class="k">let</span> <span class="k">mut</span> <span class="v">闸门</span> = <span class="t">瓶颈</span>::<span class="f">新建</span>(<span class="n">10.0</span>, <span class="n">2.0</span>);   <span class="c">// 桶容量 10，每秒补 2 个令牌</span>
+    <span class="v">闸门</span>.<span class="f">尝试获取</span>();  <span class="c">// true</span>
+}</pre>
+    </div>
+    <pre class="notice">prefer raw text? <a href="./docs/code.rs">static.bottleneck.cc/docs/code.rs</a></pre>
+    <pre><a href="./index.html">< back</a></pre>
+  </main>
+</body>
+
+</html>

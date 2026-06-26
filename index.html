@@ -3,38 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="color-scheme" content="light dark">
-
-  <link rel="preload" href="./fonts/Monaspace.woff2"
-        as="font" type="font/woff2" crossorigin>
-  <style>
-    @font-face {
-      font-family: 'Monaspace Neon';
-      src: url('./fonts/Monaspace.woff2') format('woff2');
-      font-weight: 400;
-      font-display: swap;
-    }
-    .mono {
-      font-family: 'Monaspace Neon', ui-monospace, monospace;
-    }
-    .mono pre {
-      font-family: 'Monaspace Neon', ui-monospace, monospace;
-      font-size: 12px;
-      line-height: 1.1;
-    }
-  </style>
+  <link rel="preload" href="./fonts/Monaspace.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="./style.css">
 </head>
 
-<body cz-shortcut-listen="true" style="background-color: #202124;">
-  <div style="max-width: 700px; padding: 16px; color: #fff;" class="mono">
-    <img src="./bottleneck.png" alt="logo" style="display:block; width:250px; height:auto; margin-bottom:8px;  padding-left: 16px;">
-    <pre style="white-space: pre-wrap; word-wrap: break-word;">static.bottleneck.cc</pre>
-    <pre style="white-space: pre-wrap; word-wrap: break-word;">bottleneck 能源 main page is located at <a href="https://bneck.com" style="color: inherit">bneck.com</a></pre>
-    <pre style="white-space: pre-wrap; word-wrap: break-word;">maybe you wanted to visit <a href="https://readme.bottleneck.cc" style="color: inherit">readme.bottleneck.cc</a></pre>
-    <pre style="white-space: pre-wrap; word-wrap: break-word;"><a href="https://bottleneckapis.bottleneck.cc" style="color: inherit;">get api key</a></pre>
-    
-    <pre id="doc" style="white-space: pre-wrap; word-wrap: break-word; padding-left: 16px;">loading…</pre>
-    <pre style="white-space: pre-wrap; word-wrap: break-word;">contact us at <a href="mailto:hello@bneck.com" style="color: inherit">hello@bneck.com</a></pre>
-  </div>
+<body>
+  <main class="page">
+    <img class="logo" src="./bottleneck.png" alt="logo">
+    <pre>static.bottleneck.cc</pre>
+    <pre>bottleneck 能源 main page is located at <a href="https://bneck.com">bneck.com</a></pre>
+    <pre>maybe you wanted to visit <a href="https://readme.bottleneck.cc">readme.bottleneck.cc</a></pre>
+    <pre><a href="https://bottleneckapis.bottleneck.cc">get api key</a></pre>
+    <pre>or read some <a href="./code.html">code</a></pre>
+
+    <pre id="doc">loading…</pre>
+    <pre>contact us at <a href="mailto:hello@bneck.com">hello@bneck.com</a></pre>
+  </main>
+
   <script>
     fetch('./docs/text.txt')
       .then(r => r.ok ? r.text() : Promise.reject())
